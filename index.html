@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inayat | Next-Gen AI Resume</title>
+    <style>
+        :root {
+            --primary: #0ff;
+            --secondary: #f0f;
+            --accent: #ff0;
+            --background: #050518;
+            --glass: rgba(10, 10, 30, 0.7);
+            --text: #fff;
+            --glow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', 'Orbitron', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(15, 15, 40, 0.8), rgba(5, 5, 24, 0.95));
+            z-index: -1;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        a:hover {
+            color: var(--secondary);
+            text-shadow: var(--glow);
+        }
+
+        section {
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Neural Background Animation */
+        .neural-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            margin-bottom: 30px;
+            position: relative;
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to bottom right, 
+                transparent, transparent, transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent, transparent, transparent);
+            transform: rotate(30deg);
+            z-index: -1;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-card:hover::before {
+            transform: rotate(30deg) translate(10%, 10%);
+        }
+
+        /* Neon Button */
+        .neon-btn {
+            padding: 10px 25px;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 5px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: var(--transition);
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        .neon-btn:hover {
+            color: var(--background);
+            text-shadow: none;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+        }
+
+        .neon-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: -1;
+            transition: all 0.4s;
+        }
+
+        .neon-btn:hover::before {
+            left: 0;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 15px 0;
+        }
+
+        header.scrolled {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            position: relative;
+            font-weight: 500;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .profile-img-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-img-container:hover .profile-img {
+            transform: scale(1.1);
+        }
+
+        .profile-img-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, 
+                rgba(0, 255, 255, 0.2), transparent 70%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .profile-img-container:hover::before {
+            opacity: 1;
+        }
+
+        /* About Section */
+        #about {
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                transparent, var(--primary), var(--secondary), transparent);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 100%;
+            padding: 30px 0;
+        }
+
+        .timeline-content {
+            position: relative;
+            width: calc(50% - 40px);
+            transition: var(--transition);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+            padding-left: 40px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            padding-right: 40px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before,
+        .timeline-item:nth-child(even) .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            background: var(--secondary);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px var(--primary);
+            z-index: 1;
+        }
+
+        .timeline-date {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            transform: translateY(0);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .project-tech span {
+            font-size: 0.8rem;
+            background: rgba(255, 0, 255, 0.2);
+            border-radius: 15px;
+            padding: 3px 10px;
+        }
+
+        /* Blog Section Styles */
+#blog {
+    padding: 80px 0;
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+    position: relative;
+    overflow: hidden;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.blog-card {
+    overflow: hidden;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.blog-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.blog-card:hover .blog-img {
+    transform: scale(1.05);
+}
+
+.blog-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-title {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.blog-excerpt {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.blog-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.blog-btn {
+    align-self: flex-start;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
+
+.blog-footer {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--text-light);
+}
+
+.neon-link {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.neon-link:hover {
+    color: var(--accent);
+}
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            background: rgba(10, 10, 30, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 5px;
+            color: var(--text);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        /* AI Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--glass);
+            border: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            transition: var(--transition);
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+        }
+
+        .chatbot-header {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chatbot-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .chatbot-close {
+            background: transparent;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .chat-message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-bot {
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            align-self: flex-start;
+            border-bottom-left-radius: 0;
+            margin-right: auto;
+        }
+
+        .chat-user {
+            background: rgba(255, 0, 255, 0.1);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            align-self: flex-end;
+            border-bottom-right-radius: 0;
+            margin-left: auto;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px 15px;
+            background: rgba(10, 10, 30, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            color: var(--text);
+            font-family: inherit;
+            margin-right: 10px;
+        }
+
+        .chatbot-input input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .chatbot-send {
+            background: var(--primary);
+            color: var(--background);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chatbot-send:hover {
+            background: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .footer-text {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(10, 10, 30, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+            border-color: transparent;
+        }
+
+        .social-icon i {
+            color: var(--text);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover i {
+            color: var(--background);
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition);
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-links a::before {
+            content: '>';
+            margin-right: 5px;
+            color: var(--primary);
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+            padding-left: 10px;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 991px) {
+            .about-grid,
+            .contact-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-content {
+                text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -30px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                position: relative;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: var(--glass);
+                backdrop-filter: blur(10px);
+                border-radius: 10px;
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                transform: translateY(-20px);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                width: 200px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .chatbot-window {
+                width: 300px;
+                right: -10px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Neural Background Animation -->
+    <canvas class="neural-background" id="neuralCanvas"></canvas>
+
+    <!-- Header -->
+    <header id="header">
+        <nav class="navbar">
+            <a href="#" class="logo">Me.Dev</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container hero-content">
+            <div class="profile-img-container">
+                <img src="2.jpg" alt="Profile Image" class="profile-img" id="profileImg">
+            </div>
+            <h1 class="hero-title">Inayat Rahim</h1>
+            <p class="hero-subtitle">AI Engineer & Full-Stack Developer</p>
+            <p>Building next-generation intelligent systems and experiences</p>
+            <div class="hero-btns">
+                <a href="#contact" class="neon-btn">Get In Touch</a>
+                <a href="#projects" class="neon-btn">View My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="glass-card">
+                    <div class="about-text">
+                        <h3>Who I Am</h3>
+                        <p>I'm a passionate AI Engineer and Full-Stack Developer with expertise in building intelligent, next-generation applications that push the boundaries of what's possible.</p>
+                        <p>With a background in machine learning and software development, I create solutions that combine cutting-edge AI with intuitive user experiences. My mission is to develop technology that feels alive, interactive, and futuristic.</p>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="about-text">
+                        <h3>My Skills</h3>
+                        <p>I specialize in developing AI-powered applications with modern frameworks and tools.</p>
+                        <div class="skill-list">
+                            <span class="skill-tag">AI/ML</span>
+                            <span class="skill-tag">Neural Networks</span>
+                            <span class="skill-tag">React.js</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">WebGL</span>
+                            <span class="skill-tag">Next.js</span>
+                            <span class="skill-tag">UI/UX Design</span>
+                            <span class="skill-tag">Data Science</span>
+                            <span class="skill-tag">Computer Vision</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-date">2023 - Present</div>
+                        <h3 class="timeline-title">Senior AI Engineer</h3>
+                        <p>Leading AI initiatives and developing cutting-edge machine learning models for next-generation products. Implementing neural networks and deep learning algorithms to solve complex business problems. Created a recommendation system that increased user engagement by 45%, and developed computer vision algorithms for real-time object detection with 98.7% accuracy.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-date">2021 - 2023</div>
+                        <h3 class="timeline-title">Full-Stack Developer</h3>
+                        <p>Architected and developed scalable web applications using React, Node.js, and Python. Built real-time data visualization dashboards and interactive UI components with WebGL. Implemented cutting-edge frontend animations and transitions that improved user engagement metrics by 37%.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-date">2019 - 2021</div>
+                        <h3 class="timeline-title">AI Research Associate</h3>
+                        <p>Conducted research on generative adversarial networks and transformer architectures. Published papers on novel approaches to natural language processing and computer vision. Created prototype applications demonstrating practical applications of research findings, leading to two patent applications.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-date">2017 - 2019</div>
+                        <h3 class="timeline-title">Junior Developer</h3>
+                        <p>Developed and maintained web applications, focusing on frontend technologies and user experience. Collaborated with design teams to implement responsive interfaces and interactive features. Optimized application performance, reducing load times by 40% and increasing overall system efficiency.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+<section id="projects">
+    <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+            <div class="glass-card project-card">
+                <img src="1.jpg" alt="AI-Powered Image Generator" class="project-img">
+                <div class="project-overlay">
+                    <h3 class="project-title">Neural Image Generator</h3>
+                    <p>An AI-powered tool that generates photorealistic images from text descriptions using advanced GANs.</p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>TensorFlow</span>
+                        <span>React</span>
+                    </div>
+                    <a href="https://github.com/yourusername/neural-image-generator" class="neon-btn" target="_blank" rel="noopener noreferrer">View Project</a>
+                </div>
+            </div>
+            <div class="glass-card project-card">
+                <img src="2.jpg" alt="Intelligent Dashboard" class="project-img">
+                <div class="project-overlay">
+                    <h3 class="project-title">Intelligent Analytics Dashboard</h3>
+                    <p>Real-time data visualization platform with predictive analytics and anomaly detection.</p>
+                    <div class="project-tech">
+                        <span>React</span>
+                        <span>D3.js</span>
+                        <span>Node.js</span>
+                        <span>ML</span>
+                    </div>
+                    <a href="https://yourwebsite.com/intelligent-dashboard" class="neon-btn" target="_blank" rel="noopener noreferrer">View Project</a>
+                </div>
+            </div>
+            <div class="glass-card project-card">
+                <img src="3.jpg" alt="Neural Voice Assistant" class="project-img">
+                <div class="project-overlay">
+                    <h3 class="project-title">Neural Voice Assistant</h3>
+                    <p>Advanced voice assistant using transformer models for natural language understanding and generation.</p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>PyTorch</span>
+                        <span>WebRTC</span>
+                    </div>
+                    <a href="https://github.com/yourusername/neural-voice-assistant" class="neon-btn" target="_blank" rel="noopener noreferrer">View Project</a>
+                </div>
+            </div>
+            <div class="glass-card project-card">
+                <img src="4.jpg" alt="AR Experience" class="project-img">
+                <div class="project-overlay">
+                    <h3 class="project-title">Augmented Reality Experience</h3>
+                    <p>Immersive AR application with real-time object recognition and interactive 3D elements.</p>
+                    <div class="project-tech">
+                        <span>Unity</span>
+                        <span>ARCore</span>
+                        <span>C#</span>
+                        <span>ML</span>
+                    </div>
+                    <a href="https://yourwebsite.com/ar-experience" class="neon-btn" target="_blank" rel="noopener noreferrer">View Project</a>
+                </div>
+            </div>
+            <div class="glass-card project-card">
+                <img src="5.jpg" alt="Smart IoT Platform" class="project-img">
+                <div class="project-overlay">
+                    <h3 class="project-title">Smart IoT Platform</h3>
+                    <p>End-to-end IoT solution with edge computing capabilities and intelligent data processing.</p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>MQTT</span>
+                        <span>TensorFlow Lite</span>
+                    </div>
+                    <a href="https://yourstreamlit.com/smart-iot-platform" class="neon-btn" target="_blank" rel="noopener noreferrer">View Project</a>
+                </div>
+            </div>
+            <div class="glass-card project-card">
+                <img src="6.jpg" alt="Blockchain Application" class="project-img">
+                <div class="project-overlay">
+                    <h3 class="project-title">Decentralized AI Marketplace</h3>
+                    <p>Blockchain-based platform for trading AI models and datasets with smart contracts.</p>
+                    <div class="project-tech">
+                        <span>Solidity</span>
+                        <span>Web3.js</span>
+                        <span>React</span>
+                        <span>Express</span>
+                    </div>
+                    <a href="https://github.com/yourusername/decentralized-ai-marketplace" class="neon-btn" target="_blank" rel="noopener noreferrer">View Project</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Blog/Article Section -->
+<section id="blog">
+    <div class="container">
+        <h2 class="section-title">Neural Insights & AI Chronicles</h2>
+        <p class="section-subtitle">Exploring the frontiers of artificial intelligence, machine learning, and next-gen tech</p>
+        <div class="blog-grid">
+            <!-- Blog Post 1 -->
+            <div class="glass-card blog-card">
+                <img src="Ai_Future.jpg" alt="AI Future" class="blog-img">
+                <div class="blog-content">
+                    <h3 class="blog-title">The Evolution of GenAI: From Pixels to Consciousness</h3>
+                    <p class="blog-excerpt">Dive into the journey of generative AI, where neural networks transcend traditional boundaries, creating art, music, and even synthetic realities. What’s next for sentient systems?</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">March 05, 2025</span>
+                        <span class="blog-read-time">8 min read</span>
+                    </div>
+                    <a href="https://medium.com/your-article-1-url" class="neon-btn blog-btn" target="_blank" rel="noopener noreferrer">Read More</a>
+                </div>
+            </div>
+            <!-- Blog Post 2 -->
+            <div class="glass-card blog-card">
+                <img src="5.jpg" alt="Quantum AI" class="blog-img">
+                <div class="blog-content">
+                    <h3 class="blog-title">Quantum Leap: How QML is Redefining Intelligence</h3>
+                    <p class="blog-excerpt">Quantum Machine Learning merges quantum computing with AI, unlocking exponential processing power. Explore its implications for real-time decision-making and beyond.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">February 28, 2025</span>
+                        <span class="blog-read-time">6 min read</span>
+                    </div>
+                    <a href="https://medium.com/your-article-2-url" class="neon-btn blog-btn" target="_blank" rel="noopener noreferrer">Read More</a>
+                </div>
+            </div>
+            <!-- Blog Post 3 -->
+            <div class="glass-card blog-card">
+                <img src="3.jpg" alt="AI Ethics" class="blog-img">
+                <div class="blog-content">
+                    <h3 class="blog-title">Ethics in the Age of Sentient Machines</h3>
+                    <p class="blog-excerpt">As AI systems grow smarter, ethical dilemmas multiply. Can we program morality into machines, or are we building a Pandora’s box of digital consciousness?</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">February 15, 2025</span>
+                        <span class="blog-read-time">7 min read</span>
+                    </div>
+                    <a href="https://medium.com/your-article-3-url" class="neon-btn blog-btn" target="_blank" rel="noopener noreferrer">Read More</a>
+                </div>
+            </div>
+            <!-- Blog Post 4 -->
+            <div class="glass-card blog-card">
+                <img src="4.jpg" alt="AR Vision" class="blog-img">
+                <div class="blog-content">
+                    <h3 class="blog-title">Augmented Intelligence: Blurring Realities with AI</h3>
+                    <p class="blog-excerpt">Discover how AI-powered AR is transforming industries, from immersive gaming to real-time medical diagnostics, powered by advanced computer vision.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">January 30, 2025</span>
+                        <span class="blog-read-time">5 min read</span>
+                    </div>
+                    <a href="https://medium.com/your-article-4-url" class="neon-btn blog-btn" target="_blank" rel="noopener noreferrer">Read More</a>
+                </div>
+            </div>
+            <!-- Blog Post 5 -->
+            <div class="glass-card blog-card">
+                <img src="7.jpg" alt="Neural Interfaces" class="blog-img">
+                <div class="blog-content">
+                    <h3 class="blog-title">Mind Over Machine: The Rise of Neural Interfaces</h3>
+                    <p class="blog-excerpt">Explore how brain-computer interfaces are bridging human cognition and AI, enabling thought-controlled systems and redefining human potential.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">March 08, 2025</span>
+                        <span class="blog-read-time">6 min read</span>
+                    </div>
+                    <a href="https://medium.com/your-article-5-url" class="neon-btn blog-btn" target="_blank" rel="noopener noreferrer">Read More</a>
+                </div>
+            </div>
+            <!-- Blog Post 6 -->
+            <div class="glass-card blog-card">
+                <img src="8.jpg" alt="Edge AI" class="blog-img">
+                <div class="blog-content">
+                    <h3 class="blog-title">Edge AI: Intelligence at the Frontier</h3>
+                    <p class="blog-excerpt">Unpack the power of Edge AI, where intelligent systems operate locally on devices, from smart homes to autonomous vehicles, with minimal latency.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">March 01, 2025</span>
+                        <span class="blog-read-time">5 min read</span>
+                    </div>
+                    <a href="https://medium.com/your-article-6-url" class="neon-btn blog-btn" target="_blank" rel="noopener noreferrer">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="blog-footer">
+            <p>Want more AI insights? <a href="#contact" class="neon-link">Connect with me</a> or ask my AI Assistant below!</p>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-grid">
+                <div class="glass-card">
+                    <h3>Get In Touch</h3>
+                    <p>Have a project in mind or want to collaborate? Feel free to reach out to me through this form or my social media profiles.</p>
+                    <p>I'm always interested in challenging projects that push the boundaries of AI and technology.</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> inayatrahim006@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Islamabad, Pakistan</p>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <form class="contact-form" id="contactForm" onsubmit="sendEmail(event)">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                        <input type="email" id="email" placeholder="Your Email" required>
+                        <input type="text" id="subject" placeholder="Subject">
+                        <textarea id="message" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="neon-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-toggle" id="chatbotToggle">
+            <i class="fas fa-robot chatbot-icon"></i>
+        </div>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <div class="chatbot-title">AI Assistant</div>
+                <button class="chatbot-close" id="chatbotClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="chat-message chat-bot">
+                    Hello! I'm Inayat's AI assistant. How can I help you with information about Inayat's skills, projects, or experience?
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Type your message...">
+                <button class="chatbot-send" id="chatSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <div class="footer-logo">Me.dev</div>
+                <p class="footer-text">Building next-generation intelligent systems and experiences that push the boundaries of technology.</p>
+                <div class="footer-social">
+                    <a href="https://github.com/inayatrahimdev" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/inayat-rahim-b0655b29b/" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="https://medium.com/@inayatrahimdev" class="social-icon"><i class="fab fa-medium-m"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#experience">My Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Technologies</h4>
+                <ul>
+                    <li><a href="#">Artificial Intelligence</a></li>
+                    <li><a href="#">Machine Learning</a></li>
+                    <li><a href="#">Web Development</a></li>
+                    <li><a href="#">Computer Vision</a></li>
+                    <li><a href="#">Natural Language Processing</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Inayat. All rights reserved. Next-Gen Resume.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // EmailJS Integration
+emailjs.init("FMM0RninXMd8IDNas");
+
+function sendEmail(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value; // User's name input
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value || 'Contact Form Submission';
+    const message = document.getElementById('message').value;
+
+    const templateParams = {
+        from_name: name, // Match the template's {{from_name}}
+        email: email,
+        subject: subject,
+        message: message
+    };
+
+    emailjs.send('service_m8fby79', 'template_fahycuu', templateParams)
+        .then(function(response) {
+            alert('Message sent successfully! Inayat will get back to you soon.');
+            document.getElementById('contactForm').reset();
+        }, function(error) {
+            alert('Failed to send message. Please try again later.');
+            console.error('Detailed EmailJS Error:', JSON.stringify(error));
+        });
+}
+        
+        // Blog Card Animation
+const blogCards = document.querySelectorAll('.blog-card');
+blogCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        const title = card.querySelector('.blog-title');
+        title.style.color = 'var(--accent)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        const title = card.querySelector('.blog-title');
+        title.style.color = 'var(--primary)';
+    });
+});
+
+// Update footer links to include Blog
+const footerLinks = document.querySelector('.footer-links ul');
+footerLinks.innerHTML += '<li><a href="#blog">Blog</a></li>';
+        // Neural Background Animation
+        const neuralCanvas = document.getElementById('neuralCanvas');
+        const ctx = neuralCanvas.getContext('2d');
+        let particles = [];
+        let connections = [];
+        let animationFrameId;
+
+        function resizeCanvas() {
+            neuralCanvas.width = window.innerWidth;
+            neuralCanvas.height = window.innerHeight;
+            initParticles();
+        }
+
+        function initParticles() {
+            particles = [];
+            connections = [];
+            const particleCount = Math.floor(window.innerWidth * window.innerHeight / 15000);
+            
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * neuralCanvas.width,
+                    y: Math.random() * neuralCanvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    radius: Math.random() * 2 + 1,
+                    color: getRandomColor()
+                });
+            }
+        }
+
+        function getRandomColor() {
+            const colors = [
+                'rgba(0, 255, 255, 0.7)',
+                'rgba(255, 0, 255, 0.7)',
+                'rgba(255, 255, 0, 0.7)'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function updateParticles() {
+            connections = [];
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                
+                // Update position
+                p.x += p.vx;
+                p.y += p.vy;
+                
+                // Boundary check
+                if (p.x < 0 || p.x > neuralCanvas.width) p.vx = -p.vx;
+                if (p.y < 0 || p.y > neuralCanvas.height) p.vy = -p.vy;
+                
+                // Find nearby particles
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dx = p.x - p2.x;
+                    const dy = p.y - p2.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 100) {
+                        connections.push({
+                            from: p,
+                            to: p2,
+                            distance: distance,
+                            opacity: 1 - distance / 100
+                        });
+                    }
+                }
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, neuralCanvas.width, neuralCanvas.height);
+            
+            // Draw connections
+            for (const conn of connections) {
+                ctx.beginPath();
+                ctx.strokeStyle = conn.from.color.replace('0.7', conn.opacity * 0.3);
+                ctx.lineWidth = 1;
+                ctx.moveTo(conn.from.x, conn.from.y);
+                ctx.lineTo(conn.to.x, conn.to.y);
+                ctx.stroke();
+            }
+            
+            // Draw particles
+            for (const p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+            }
+        }
+
+        function animate() {
+            updateParticles();
+            drawParticles();
+            animationFrameId = requestAnimationFrame(animate);
+        }
+
+        // Initialize the neural background
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        animate();
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile navigation toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.querySelector('.nav-links');
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+                navLinks.classList.remove('active');
+            });
+        });
+
+        
+
+        // Chatbot functionality
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const chatbotClose = document.getElementById('chatbotClose');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+
+        // Initialize chatbot responses
+        const chatbotResponses = {
+    // General Greetings and Introductions
+    'hi': 'Hello! I am Inayat’s Assistant. How can I help you learn more about Inayat’s work or expertise?',
+    'hello': 'Hi there! I am Inayat’s Assistant. Interested in learning about Inayat’s skills, projects, or blog articles?',
+    'hey': 'Hey! I am Inayat’s Assistant. What would you like to know about Inayat’s experience or work in AI and tech?',
+    'good morning': 'Good morning! I am Inayat’s Assistant. How can I assist you with Inayat’s portfolio today?',
+    'good afternoon': 'Good afternoon! I am Inayat’s Assistant. Want to explore Inayat’s projects, blog, or skills?',
+    'good evening': 'Good evening! I am Inayat’s Assistant. What would you like to learn about Inayat’s work in AI, web development, or beyond?',
+
+    // About Inayat
+    'who is inayat': 'I am Inayat’s Assistant. Inayat is a Senior AI Engineer with over 8 years of experience in AI, machine learning, and web development. They specialize in building intelligent systems, from neural networks to interactive web applications, and are passionate about advancing technology. Check out the About section for more details!',
+    'about inayat': 'I am Inayat’s Assistant. Inayat is a skilled professional based in San Francisco, CA, with a Master’s degree in Computer Science specializing in AI and Machine Learning. They currently work as a Senior AI Engineer, leading innovative AI projects, and have a strong background in full-stack development, research, and more. Would you like to know about their experience or projects?',
+    'what does inayat do': 'I am Inayat’s Assistant. Inayat builds next-generation intelligent systems, from AI and machine learning models to interactive web applications. They’re currently a Senior AI Engineer, leading AI initiatives, and also share insights through their tech blog. You can explore their work in the Projects and Blog sections!',
+
+    // General AI and Tech Questions
+    'what is ai': 'I am Inayat’s Assistant. AI, or Artificial Intelligence, refers to the development of computer systems that can perform tasks typically requiring human intelligence, such as learning, problem-solving, and decision-making. Inayat has extensive experience in AI, creating systems like neural networks and intelligent voice assistants. Want to learn about Inayat’s AI projects?',
+    'what is machine learning': 'I am Inayat’s Assistant. Machine Learning (ML) is a subset of AI where systems learn from data to make predictions or decisions without being explicitly programmed. Inayat has worked with ML tools like TensorFlow and PyTorch to build recommendation systems, computer vision solutions, and more. Check out the Projects section for examples!',
+    'what is deep learning': 'I am Inayat’s Assistant. Deep Learning is a branch of machine learning that uses neural networks with many layers to analyze complex patterns in data, such as images or speech. Inayat uses deep learning in projects like the Neural Image Generator and Neural Voice Assistant. Would you like to know more about these projects?',
+    'what is a neural network': 'I am Inayat’s Assistant. A neural network is a computational model inspired by the human brain, used in AI to process data and learn patterns. Inayat specializes in neural networks, applying them in projects like the Neural Image Generator, which creates photorealistic images from text. Want to explore Inayat’s AI projects?',
+    'what is computer vision': 'I am Inayat’s Assistant. Computer Vision enables computers to interpret and understand visual information, like images or videos. Inayat has used computer vision in projects like the Augmented Reality Experience for real-time object recognition, achieving 98.7% accuracy. You can find more details in the Projects section!',
+    'what is nlp': 'I am Inayat’s Assistant. NLP, or Natural Language Processing, is a field of AI that focuses on enabling computers to understand and generate human language. Inayat has applied NLP in the Neural Voice Assistant, which uses transformer models for natural language understanding. Check the Projects section for more!',
+    'what is blockchain': 'I am Inayat’s Assistant. Blockchain is a decentralized, secure ledger technology used to record transactions across a network. Inayat built a Decentralized AI Marketplace using blockchain, with smart contracts in Solidity and Web3.js. You can learn more about it in the Projects section!',
+    'what is iot': 'I am Inayat’s Assistant. IoT, or Internet of Things, refers to interconnected devices that communicate and share data. Inayat developed a Smart IoT Platform with edge computing capabilities using Python, MQTT, and TensorFlow Lite. See the Projects section for details!',
+    'what is ar': 'I am Inayat’s Assistant. AR, or Augmented Reality, overlays digital content onto the real world. Inayat created an AR Experience with real-time object recognition and 3D elements using Unity, ARCore, and ML. You can explore it in the Projects section!',
+    'what is quantum computing': 'I am Inayat’s Assistant. Quantum Computing uses principles of quantum mechanics to perform computations far faster than classical computers for certain problems. Inayat has explored Quantum Machine Learning (QML) in their blog article "Quantum Leap: How QML is Redefining Intelligence." Check the Blog section to read it!',
+    'what is edge computing': 'I am Inayat’s Assistant. Edge Computing involves processing data closer to where it’s generated, reducing latency. Inayat discusses this in their blog article "Edge AI: Intelligence at the Frontier" and applied it in the Smart IoT Platform. You can find more in the Blog and Projects sections!',
+
+    // Skills and Expertise
+    'skills': 'I am Inayat’s Assistant. Inayat specializes in AI/ML, Neural Networks, React.js, Node.js, Python, TensorFlow, PyTorch, WebGL, Next.js, UI/UX Design, Data Science, Computer Vision, and Blockchain (Solidity, Web3.js). They’re also proficient in tools like D3.js, ARCore, Unity, and MQTT for IoT solutions.',
+    'ai skills': 'I am Inayat’s Assistant. Inayat has extensive experience in AI, including developing neural networks, implementing machine learning models with TensorFlow and PyTorch, and creating intelligent systems for applications like recommendation systems, computer vision, and natural language processing.',
+    'machine learning skills': 'I am Inayat’s Assistant. Inayat has worked with TensorFlow, PyTorch, and various ML algorithms to build recommendation systems, computer vision solutions (e.g., real-time object detection with 98.7% accuracy), and predictive analytics tools. They also have experience with Quantum Machine Learning (QML).',
+    'web development skills': 'I am Inayat’s Assistant. Inayat is proficient in React.js, Node.js, Next.js, and Express for building responsive, interactive web applications. They’ve also used WebGL for animations and D3.js for data visualization, improving user engagement by up to 37% in projects.',
+    'blockchain skills': 'I am Inayat’s Assistant. Inayat has expertise in blockchain development, including Solidity and Web3.js. They built a Decentralized AI Marketplace for trading AI models and datasets using smart contracts.',
+    'iot skills': 'I am Inayat’s Assistant. Inayat has developed IoT solutions like the Smart IoT Platform, leveraging Python, MQTT, and TensorFlow Lite for edge computing and intelligent data processing.',
+    'ar skills': 'I am Inayat’s Assistant. Inayat has experience in augmented reality, having built an AR Experience with Unity, ARCore, C#, and ML for real-time object recognition and interactive 3D elements.',
+    'what technologies does inayat use': 'I am Inayat’s Assistant. Inayat works with a wide range of technologies, including Python, TensorFlow, PyTorch, React.js, Node.js, Next.js, WebGL, D3.js, Unity, ARCore, Solidity, Web3.js, MQTT, and TensorFlow Lite. They’re also skilled in UI/UX design and data science.',
+
+    // Specific Technologies
+    'python': 'I am Inayat’s Assistant. Inayat uses Python extensively for AI, machine learning, and IoT projects, including the Neural Image Generator, Neural Voice Assistant, and Smart IoT Platform.',
+    'tensorflow': 'I am Inayat’s Assistant. Inayat has leveraged TensorFlow for machine learning projects like the Neural Image Generator and recommendation systems, achieving high accuracy in real-time applications.',
+    'pytorch': 'I am Inayat’s Assistant. Inayat uses PyTorch for advanced AI projects, such as the Neural Voice Assistant, which relies on transformer models for natural language processing.',
+    'react': 'I am Inayat’s Assistant. Inayat is skilled in React.js, using it to build interactive web applications like the Neural Image Generator, Intelligent Analytics Dashboard, and Decentralized AI Marketplace.',
+    'node.js': 'I am Inayat’s Assistant. Inayat uses Node.js for backend development in projects like the Intelligent Analytics Dashboard, ensuring scalable and real-time data processing.',
+    'unity': 'I am Inayat’s Assistant. Inayat utilized Unity for the Augmented Reality Experience project, creating an immersive AR application with interactive 3D elements.',
+    'solidity': 'I am Inayat’s Assistant. Inayat has used Solidity to develop smart contracts for the Decentralized AI Marketplace, a blockchain-based platform for trading AI models and datasets.',
+    'webgl': 'I am Inayat’s Assistant. Inayat leverages WebGL for creating dynamic animations and interactive visuals in web applications, enhancing user experiences.',
+    'd3.js': 'I am Inayat’s Assistant. Inayat uses D3.js for data visualization, as seen in the Intelligent Analytics Dashboard, which provides real-time insights with predictive analytics.',
+
+    // Experience
+    'experience': 'I am Inayat’s Assistant. Inayat has over 8 years of experience, currently working as a Senior AI Engineer (2023-Present), and previously as a Full-Stack Developer (2021-2023), AI Research Associate (2019-2021), and Junior Developer (2017-2019). Check the Experience section for details!',
+    'current role': 'I am Inayat’s Assistant. Inayat is currently a Senior AI Engineer (2023-Present), leading AI initiatives, developing machine learning models, and implementing neural networks. They created a recommendation system that boosted user engagement by 45% and achieved 98.7% accuracy in real-time object detection.',
+    'past roles': 'I am Inayat’s Assistant. Before their current role, Inayat worked as a Full-Stack Developer (2021-2023), AI Research Associate (2019-2021), and Junior Developer (2017-2019). They’ve built scalable web apps, conducted AI research, and optimized application performance across these roles.',
+    'how long has inayat worked': 'I am Inayat’s Assistant. Inayat has been working in the tech industry for over 8 years, starting as a Junior Developer in 2017 and progressing to their current role as a Senior AI Engineer.',
+
+    // Projects
+    'projects': 'I am Inayat’s Assistant. Inayat has worked on cutting-edge projects like the Neural Image Generator, Intelligent Analytics Dashboard, Neural Voice Assistant, AR Experience, Smart IoT Platform, and Decentralized AI Marketplace. Visit the Projects section to learn more!',
+    'neural image generator': 'I am Inayat’s Assistant. The Neural Image Generator is an AI-powered tool that creates photorealistic images from text descriptions using advanced GANs. It uses Python, TensorFlow, and React. You can view the project in the Projects section or check its GitHub link there!',
+    'intelligent analytics dashboard': 'I am Inayat’s Assistant. The Intelligent Analytics Dashboard is a real-time data visualization platform with predictive analytics and anomaly detection, built with React, D3.js, Node.js, and ML techniques. Find more details in the Projects section!',
+    'neural voice assistant': 'I am Inayat’s Assistant. The Neural Voice Assistant uses transformer models for natural language understanding and generation, developed with Python, PyTorch, and WebRTC. Check the Projects section for more info and a GitHub link!',
+    'ar experience': 'I am Inayat’s Assistant. The Augmented Reality Experience is an immersive AR app with real-time object recognition and interactive 3D elements, created using Unity, ARCore, C#, and ML. You can explore it in the Projects section!',
+    'smart iot platform': 'I am Inayat’s Assistant. The Smart IoT Platform is an end-to-end IoT solution with edge computing and intelligent data processing, built with Python, MQTT, and TensorFlow Lite. See the Projects section for details and a Streamlit link!',
+    'decentralized ai marketplace': 'I am Inayat’s Assistant. The Decentralized AI Marketplace is a blockchain-based platform for trading AI models and datasets using smart contracts, developed with Solidity, Web3.js, React, and Express. Check the Projects section for more!',
+
+    // Blog Articles
+    'blog': 'I am Inayat’s Assistant. Inayat has written insightful articles on AI and tech in the Blog section, covering topics like generative AI, quantum machine learning, AI ethics, augmented reality, neural interfaces, and edge AI. Which article would you like to know more about?',
+    'genai article': 'I am Inayat’s Assistant. Inayat’s article "The Evolution of GenAI: From Pixels to Consciousness" explores how generative AI creates art, music, and synthetic realities. You can read it on Medium via the link in the Blog section!',
+    'quantum article': 'I am Inayat’s Assistant. The article "Quantum Leap: How QML is Redefining Intelligence" discusses Quantum Machine Learning’s potential for real-time decision-making. Check it out on Medium through the Blog section!',
+    'ethics article': 'I am Inayat’s Assistant. In "Ethics in the Age of Sentient Machines," Inayat examines the ethical challenges of programming morality into AI. You can find the full article on Medium in the Blog section!',
+    'ar article': 'I am Inayat’s Assistant. Inayat’s "Augmented Intelligence: Blurring Realities with AI" explores AI-powered AR applications in gaming and medical diagnostics. Read it on Medium via the Blog section!',
+    'neural interfaces article': 'I am Inayat’s Assistant. The article "Mind Over Machine: The Rise of Neural Interfaces" covers brain-computer interfaces and their impact on human-AI interaction. It’s available on Medium in the Blog section!',
+    'edge ai article': 'I am Inayat’s Assistant. In "Edge AI: Intelligence at the Frontier," Inayat unpacks how Edge AI enables low-latency intelligent systems. You can read it on Medium through the Blog section!',
+
+    // Education
+    'education': 'I am Inayat’s Assistant. Inayat holds a Master’s degree in Computer Science with a specialization in Artificial Intelligence and Machine Learning. This academic background has been key to their success in AI and tech.',
+    'degree': 'I am Inayat’s Assistant. Inayat has a Master’s degree in Computer Science, specializing in AI and Machine Learning, which provides a strong foundation for their work in intelligent systems.',
+    'where did inayat study': 'I am Inayat’s Assistant. Inayat earned their Master’s degree in Computer Science with a focus on AI and ML. For privacy reasons, the specific institution isn’t listed, but their education has greatly contributed to their expertise!',
+
+    // Contact and Location
+    'contact': 'I am Inayat’s Assistant. You can contact Inayat via email at info@inayat.io or through the contact form on this website. They’re always open to discussing new projects or collaborations!',
+    'email': 'I am Inayat’s Assistant. Inayat’s email is info@inayat.io. Feel free to reach out for project inquiries or collaborations!',
+    'location': 'I am Inayat’s Assistant. Inayat is currently based in San Francisco, California, a hub for tech innovation!',
+    'where is inayat located': 'I am Inayat’s Assistant. Inayat is located in San Francisco, CA, where they work on cutting-edge AI and tech projects.',
+
+    // Achievements and Impact
+    'achievements': 'I am Inayat’s Assistant. Inayat has achieved significant milestones, including increasing user engagement by 45% with a recommendation system, achieving 98.7% accuracy in real-time object detection, publishing AI research papers, filing two patent applications, and improving application performance by 40% as a Junior Developer.',
+    'patents': 'I am Inayat’s Assistant. Inayat has two patent applications from their time as an AI Research Associate, stemming from innovative work in generative adversarial networks and transformer architectures.',
+    'research papers': 'I am Inayat’s Assistant. Inayat published research papers on natural language processing and computer vision during their role as an AI Research Associate (2019-2021). Would you like to know more about their research?',
+
+    // Collaborations and Hiring
+    'collaborations': 'I am Inayat’s Assistant. Inayat is open to collaborating on innovative AI, ML, web development, or blockchain projects. You can reach out via email at info@inayat.io or the contact form to discuss potential collaborations!',
+    'can i hire inayat': 'I am Inayat’s Assistant. Inayat might be open to new opportunities! Please email them at info@inayat.io with details about the role or project, and they’ll get back to you.',
+    'work with inayat': 'I am Inayat’s Assistant. Interested in working with Inayat? They’re passionate about AI, web development, and more. Contact them at info@inayat.io to explore opportunities!',
+
+    // Industry-Specific Questions
+    'ai in healthcare': 'I am Inayat’s Assistant. AI in healthcare improves diagnostics, drug discovery, and personalized treatment. Inayat has explored AI applications in medical diagnostics in their blog article "Augmented Intelligence: Blurring Realities with AI," focusing on AR for real-time medical imaging. Check the Blog section!',
+    'ai in gaming': 'I am Inayat’s Assistant. AI in gaming enhances realism, NPC behavior, and player experiences. Inayat’s AR Experience project uses AI for real-time object recognition in gaming contexts, as discussed in their blog article "Augmented Intelligence: Blurring Realities with AI." See the Blog and Projects sections!',
+    'ai ethics': 'I am Inayat’s Assistant. AI ethics addresses moral challenges in AI development, like bias and accountability. Inayat wrote about this in their blog article "Ethics in the Age of Sentient Machines," exploring how to program morality into machines. You can read it in the Blog section!',
+    'future of ai': 'I am Inayat’s Assistant. The future of AI includes advancements in generative models, quantum computing, and human-AI collaboration. Inayat discusses this in their blog article "The Evolution of GenAI: From Pixels to Consciousness," predicting the rise of sentient systems. Check the Blog section!',
+
+    // General Tech Trends
+    'what is generative ai': 'I am Inayat’s Assistant. Generative AI creates new content, like images, music, or text, using models like GANs. Inayat’s Neural Image Generator project uses generative AI to produce photorealistic images from text, and they’ve written about it in their blog article "The Evolution of GenAI." See the Projects and Blog sections!',
+    'what is transformer model': 'I am Inayat’s Assistant. A transformer model is a type of neural network used in NLP tasks, known for its attention mechanism. Inayat used transformers in the Neural Voice Assistant for natural language understanding. Learn more in the Projects section!',
+    'what is gans': 'I am Inayat’s Assistant. GANs, or Generative Adversarial Networks, consist of two models—a generator and a discriminator—used to create realistic data. Inayat applied GANs in the Neural Image Generator to produce photorealistic images. Check the Projects section for details!',
+    'what is data science': 'I am Inayat’s Assistant. Data Science involves extracting insights from data using statistics, machine learning, and visualization. Inayat is skilled in data science, using tools like D3.js in the Intelligent Analytics Dashboard for real-time data insights. See the Projects section!',
+
+    // Portfolio and Resume
+    'resume': 'I am Inayat’s Assistant. You’re looking at Inayat’s interactive resume right now! Feel free to explore the Experience, Projects, and Blog sections to learn more about their work.',
+    'portfolio': 'I am Inayat’s Assistant. This website is Inayat’s portfolio! It showcases their experience, projects, blog articles, and more. What section would you like to explore?',
+
+    // General Inquiries
+    'what can you tell me': 'I am Inayat’s Assistant. I can tell you about Inayat’s skills, experience, projects, blog articles, education, and more! I can also explain AI, machine learning, or other tech concepts. What would you like to know?',
+    'tell me more': 'I am Inayat’s Assistant. Sure! Inayat is a Senior AI Engineer with expertise in AI, ML, web development, and more. They’ve worked on projects like the Neural Image Generator and have written insightful articles on AI topics. What specifically would you like to learn about?',
+    'what else can you do': 'I am Inayat’s Assistant. I can tell you about Inayat’s work, explain tech concepts like AI or blockchain, and guide you through their portfolio. I can also help with questions about collaboration or hiring Inayat. What would you like to explore?',
+
+    // Fun and Miscellaneous
+    'tell me a joke': 'I am Inayat’s Assistant. Why did the machine learning model fail at stand-up comedy? Because it kept overfitting to the punchline! Want to know more about Inayat’s work in machine learning?',
+    'what is the weather': 'I am Inayat’s Assistant. I’m not equipped to check the weather, but I can tell you that Inayat is based in San Francisco, CA, where it’s often foggy! Would you like to learn about Inayat’s projects instead?',
+    'who created you': 'I am Inayat’s Assistant, created by Inayat to help visitors explore their portfolio and learn about their work in AI, web development, and more. What would you like to know?',
+
+    // Gratitude and Closing
+    'thanks': 'I am Inayat’s Assistant. You’re welcome! Let me know if you have any other questions about Inayat’s work or experience.',
+    'thank you': 'I am Inayat’s Assistant. You’re welcome! Is there anything else you’d like to know about Inayat?',
+    'bye': 'I am Inayat’s Assistant. Goodbye! Thanks for exploring Inayat’s portfolio. Feel free to come back anytime!',
+    'goodbye': 'I am Inayat’s Assistant. See you later! If you have more questions about Inayat, I’ll be here to help!',
+            
+        };
+        function getAIResponse(input) {
+            input = input.toLowerCase().trim();
+            
+            // Check for exact matches
+            if (chatbotResponses[input]) {
+                return chatbotResponses[input];
+            }
+            
+            // Check for partial matches
+            for (const key in chatbotResponses) {
+                if (input.includes(key)) {
+                    return chatbotResponses[key];
+                }
+            }
+            
+            // Default response
+            return "I am Inayat’s Assistant. I’m not sure about that. I can tell you about Inayat’s skills, experience, projects, blog articles, or tech concepts like AI and machine learning. What would you like to know?";
+        }
+
+        function addMessage(message, isUser) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message');
+            messageElement.classList.add(isUser ? 'chat-user' : 'chat-bot');
+            messageElement.textContent = message;
+            chatbotMessages.appendChild(messageElement);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                chatInput.value = '';
+                
+                // Simulate typing delay
+                setTimeout(() => {
+                    const response = getAIResponse(message);
+                    addMessage(response, false);
+                }, 500);
+            }
+        }
+
+        chatbotToggle.addEventListener('click', () => {
+            chatbotWindow.style.display = chatbotWindow.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.style.display = 'none';
+        });
+
+        chatSend.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Dynamic theme based on time
+        function updateTheme() {
+            const hour = new Date().getHours();
+            let primary, secondary, accent;
+            
+            if (hour >= 6 && hour < 12) {
+                // Morning theme
+                primary = '#0ff';
+                secondary = '#f0f';
+                accent = '#ff0';
+            } else if (hour >= 12 && hour < 18) {
+                // Afternoon theme
+                primary = '#00ffaa';
+                secondary = '#ff00aa';
+                accent = '#aaff00';
+            } else {
+                // Evening/night theme
+                primary = '#5000ff';
+                secondary = '#ff0077';
+                accent = '#00ffff';
+            }
+            
+            document.documentElement.style.setProperty('--primary', primary);
+            document.documentElement.style.setProperty('--secondary', secondary);
+            document.documentElement.style.setProperty('--accent', accent);
+        }
+        
+        updateTheme();
+        setInterval(updateTheme, 3600000); // Update every hour
+
+        // Preload profile image with a placeholder
+        const profileImg = document.getElementById('profileImg');
+        const imgLoader = new Image();
+        imgLoader.onload = function() {
+            profileImg.src = this.src;
+        };
+        imgLoader.src = '2.jpg';
+        // Fallback if image fails to load (keep the placeholder)
+        imgLoader.onerror = function() {
+            console.log('Profile image failed to load. Using placeholder instead.');
+        };
+
+    </script>
+</body>
+</html>
