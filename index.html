@@ -1902,132 +1902,355 @@ footerLinks.innerHTML += '<li><a href="#blog">Blog</a></li>';
         const chatSend = document.getElementById('chatSend');
 
         // Initialize chatbot responses
-        const chatbotResponses = {
+        // Initialize chatbot responses
+const chatbotResponses = {
     // General Greetings and Introductions
-    'hi': 'Hello! I am Inayat’s Assistant. How can I help you learn more about Inayat’s work or expertise?',
-    'hello': 'Hi there! I am Inayat’s Assistant. Interested in learning about Inayat’s skills, projects, or blog articles?',
-    'hey': 'Hey! I am Inayat’s Assistant. What would you like to know about Inayat’s experience or work in AI and tech?',
-    'good morning': 'Good morning! I am Inayat’s Assistant. How can I assist you with Inayat’s portfolio today?',
-    'good afternoon': 'Good afternoon! I am Inayat’s Assistant. Want to explore Inayat’s projects, blog, or skills?',
-    'good evening': 'Good evening! I am Inayat’s Assistant. What would you like to learn about Inayat’s work in AI, web development, or beyond?',
+    'hi': 'Hello! I am Inayat\'s Assistant. How can I help you learn more about Inayat\'s work or expertise?',
+    'hello': 'Hi there! I am Inayat\'s Assistant. Interested in learning about Inayat\'s skills, projects, or blog articles?',
+    'hey': 'Hey! I am Inayat\'s Assistant. What would you like to know about Inayat\'s experience or work in AI and tech?',
+    'good morning': 'Good morning! I am Inayat\'s Assistant. How can I assist you with Inayat\'s portfolio today?',
+    'good afternoon': 'Good afternoon! I am Inayat\'s Assistant. Want to explore Inayat\'s projects, blog, or skills?',
+    'good evening': 'Good evening! I am Inayat\'s Assistant. What would you like to learn about Inayat\'s work in AI, web development, or beyond?',
+    'help': 'I am Inayat\'s Assistant. I can help you with information about Inayat\'s skills, experience, projects, education, or contact details. What would you like to know?',
+    'what can you do': 'I am Inayat\'s Assistant. I can provide information about Inayat\'s background, skills, projects, blog articles, and more. I can also explain AI concepts and technologies Inayat works with. How can I assist you today?',
 
     // About Inayat
-    'who is inayat': 'I am Inayat’s Assistant. Inayat is a Senior AI Engineer with over 8 years of experience in AI, machine learning, and web development. They specialize in building intelligent systems, from neural networks to interactive web applications, and are passionate about advancing technology. Check out the About section for more details!',
-    'about inayat': 'I am Inayat’s Assistant. Inayat is a skilled professional based in San Francisco, CA, with a Master’s degree in Computer Science specializing in AI and Machine Learning. They currently work as a Senior AI Engineer, leading innovative AI projects, and have a strong background in full-stack development, research, and more. Would you like to know about their experience or projects?',
-    'what does inayat do': 'I am Inayat’s Assistant. Inayat builds next-generation intelligent systems, from AI and machine learning models to interactive web applications. They’re currently a Senior AI Engineer, leading AI initiatives, and also share insights through their tech blog. You can explore their work in the Projects and Blog sections!',
-
-    // General AI and Tech Questions
-    'what is ai': 'I am Inayat’s Assistant. AI, or Artificial Intelligence, refers to the development of computer systems that can perform tasks typically requiring human intelligence, such as learning, problem-solving, and decision-making. Inayat has extensive experience in AI, creating systems like neural networks and intelligent voice assistants. Want to learn about Inayat’s AI projects?',
-    'what is machine learning': 'I am Inayat’s Assistant. Machine Learning (ML) is a subset of AI where systems learn from data to make predictions or decisions without being explicitly programmed. Inayat has worked with ML tools like TensorFlow and PyTorch to build recommendation systems, computer vision solutions, and more. Check out the Projects section for examples!',
-    'what is deep learning': 'I am Inayat’s Assistant. Deep Learning is a branch of machine learning that uses neural networks with many layers to analyze complex patterns in data, such as images or speech. Inayat uses deep learning in projects like the Neural Image Generator and Neural Voice Assistant. Would you like to know more about these projects?',
-    'what is a neural network': 'I am Inayat’s Assistant. A neural network is a computational model inspired by the human brain, used in AI to process data and learn patterns. Inayat specializes in neural networks, applying them in projects like the Neural Image Generator, which creates photorealistic images from text. Want to explore Inayat’s AI projects?',
-    'what is computer vision': 'I am Inayat’s Assistant. Computer Vision enables computers to interpret and understand visual information, like images or videos. Inayat has used computer vision in projects like the Augmented Reality Experience for real-time object recognition, achieving 98.7% accuracy. You can find more details in the Projects section!',
-    'what is nlp': 'I am Inayat’s Assistant. NLP, or Natural Language Processing, is a field of AI that focuses on enabling computers to understand and generate human language. Inayat has applied NLP in the Neural Voice Assistant, which uses transformer models for natural language understanding. Check the Projects section for more!',
-    'what is blockchain': 'I am Inayat’s Assistant. Blockchain is a decentralized, secure ledger technology used to record transactions across a network. Inayat built a Decentralized AI Marketplace using blockchain, with smart contracts in Solidity and Web3.js. You can learn more about it in the Projects section!',
-    'what is iot': 'I am Inayat’s Assistant. IoT, or Internet of Things, refers to interconnected devices that communicate and share data. Inayat developed a Smart IoT Platform with edge computing capabilities using Python, MQTT, and TensorFlow Lite. See the Projects section for details!',
-    'what is ar': 'I am Inayat’s Assistant. AR, or Augmented Reality, overlays digital content onto the real world. Inayat created an AR Experience with real-time object recognition and 3D elements using Unity, ARCore, and ML. You can explore it in the Projects section!',
-    'what is quantum computing': 'I am Inayat’s Assistant. Quantum Computing uses principles of quantum mechanics to perform computations far faster than classical computers for certain problems. Inayat has explored Quantum Machine Learning (QML) in their blog article "Quantum Leap: How QML is Redefining Intelligence." Check the Blog section to read it!',
-    'what is edge computing': 'I am Inayat’s Assistant. Edge Computing involves processing data closer to where it’s generated, reducing latency. Inayat discusses this in their blog article "Edge AI: Intelligence at the Frontier" and applied it in the Smart IoT Platform. You can find more in the Blog and Projects sections!',
+    'who is inayat': 'Inayat Rahim is an AI Engineer with expertise in building intelligent systems. He specializes in deep learning architectures like CNNs, RNNs, LSTMs, Transformers, and embeddings. He focuses on turning advanced neural network concepts into deployable, user-focused AI systems - from generative models to intelligent vision systems and edge AI applications.',
+    'about inayat': 'Inayat Rahim is an AI Engineer focused on building real-world AI products. He specializes in deep learning architectures including CNNs, RNNs, LSTMs, Transformers, and embeddings. He\'s based in Islamabad, Pakistan and is passionate about creating scalable, intelligent solutions that solve meaningful problems.',
+    'what does inayat do': 'Inayat builds next-generation intelligent systems and experiences that push the boundaries of technology. As an AI Engineer, he develops deep learning models, neural networks, and product-oriented applications across various domains including computer vision, NLP, and edge AI.',
+    'background': 'Inayat has a background in AI engineering, machine learning, and product building. He has experience as a Python Intern, Machine Learning Intern, and is currently a Microsoft Learn Student Ambassador (BETA). He was also selected for the prestigious Aspire Leaders Program at Harvard Business School in May 2025.',
 
     // Skills and Expertise
-    'skills': 'I am Inayat’s Assistant. Inayat specializes in AI/ML, Neural Networks, React.js, Node.js, Python, TensorFlow, PyTorch, WebGL, Next.js, UI/UX Design, Data Science, Computer Vision, and Blockchain (Solidity, Web3.js). They’re also proficient in tools like D3.js, ARCore, Unity, and MQTT for IoT solutions.',
-    'ai skills': 'I am Inayat’s Assistant. Inayat has extensive experience in AI, including developing neural networks, implementing machine learning models with TensorFlow and PyTorch, and creating intelligent systems for applications like recommendation systems, computer vision, and natural language processing.',
-    'machine learning skills': 'I am Inayat’s Assistant. Inayat has worked with TensorFlow, PyTorch, and various ML algorithms to build recommendation systems, computer vision solutions (e.g., real-time object detection with 98.7% accuracy), and predictive analytics tools. They also have experience with Quantum Machine Learning (QML).',
-    'web development skills': 'I am Inayat’s Assistant. Inayat is proficient in React.js, Node.js, Next.js, and Express for building responsive, interactive web applications. They’ve also used WebGL for animations and D3.js for data visualization, improving user engagement by up to 37% in projects.',
-    'blockchain skills': 'I am Inayat’s Assistant. Inayat has expertise in blockchain development, including Solidity and Web3.js. They built a Decentralized AI Marketplace for trading AI models and datasets using smart contracts.',
-    'iot skills': 'I am Inayat’s Assistant. Inayat has developed IoT solutions like the Smart IoT Platform, leveraging Python, MQTT, and TensorFlow Lite for edge computing and intelligent data processing.',
-    'ar skills': 'I am Inayat’s Assistant. Inayat has experience in augmented reality, having built an AR Experience with Unity, ARCore, C#, and ML for real-time object recognition and interactive 3D elements.',
-    'what technologies does inayat use': 'I am Inayat’s Assistant. Inayat works with a wide range of technologies, including Python, TensorFlow, PyTorch, React.js, Node.js, Next.js, WebGL, D3.js, Unity, ARCore, Solidity, Web3.js, MQTT, and TensorFlow Lite. They’re also skilled in UI/UX design and data science.',
+    'skills': 'Inayat\'s skills include AI/ML, Neural Networks, Deep Learning (CNNs, RNNs, LSTMs), TensorFlow, Keras, OpenCV, Transformers, PyTorch, UI/UX Thinking, Multimodal AI, Edge AI, Huggingface Models & Transformers Fine-Tuning, and Product Building.',
+    'ai skills': 'Inayat\'s AI skills include deep learning with neural networks (CNNs, RNNs, LSTMs), working with transformers, PyTorch, TensorFlow, Keras, OpenCV, multimodal AI systems, edge AI deployment, and Huggingface models & fine-tuning techniques.',
+    'machine learning skills': 'Inayat\'s machine learning skills include deep learning architectures, neural networks implementation, computer vision with OpenCV, transformer models, embedding techniques, and edge AI deployment for various applications.',
+    'web development skills': 'While primarily an AI engineer, Inayat has created interactive applications for his AI projects, including Streamlit-based apps like the Text and Voice Sentiment Analyzer and the Real-Time Weather Info App.',
+    'programming languages': 'Based on his projects and experience, Inayat works with Python (for AI/ML), C++ (for Arduino projects), and appears to have front-end development skills for creating interactive applications.',
+    'what technologies does inayat use': 'Inayat uses Python, TensorFlow, Keras, PyTorch, OpenCV, Streamlit, Arduino, and various AI frameworks like Huggingface Transformers. He also works with technologies for deploying edge AI solutions and creating multimodal AI applications.',
+    'frameworks': 'Inayat works with TensorFlow, Keras, PyTorch, OpenCV, Streamlit, and Huggingface Transformers for his AI and application development work.',
 
     // Specific Technologies
-    'python': 'I am Inayat’s Assistant. Inayat uses Python extensively for AI, machine learning, and IoT projects, including the Neural Image Generator, Neural Voice Assistant, and Smart IoT Platform.',
-    'tensorflow': 'I am Inayat’s Assistant. Inayat has leveraged TensorFlow for machine learning projects like the Neural Image Generator and recommendation systems, achieving high accuracy in real-time applications.',
-    'pytorch': 'I am Inayat’s Assistant. Inayat uses PyTorch for advanced AI projects, such as the Neural Voice Assistant, which relies on transformer models for natural language processing.',
-    'react': 'I am Inayat’s Assistant. Inayat is skilled in React.js, using it to build interactive web applications like the Neural Image Generator, Intelligent Analytics Dashboard, and Decentralized AI Marketplace.',
-    'node.js': 'I am Inayat’s Assistant. Inayat uses Node.js for backend development in projects like the Intelligent Analytics Dashboard, ensuring scalable and real-time data processing.',
-    'unity': 'I am Inayat’s Assistant. Inayat utilized Unity for the Augmented Reality Experience project, creating an immersive AR application with interactive 3D elements.',
-    'solidity': 'I am Inayat’s Assistant. Inayat has used Solidity to develop smart contracts for the Decentralized AI Marketplace, a blockchain-based platform for trading AI models and datasets.',
-    'webgl': 'I am Inayat’s Assistant. Inayat leverages WebGL for creating dynamic animations and interactive visuals in web applications, enhancing user experiences.',
-    'd3.js': 'I am Inayat’s Assistant. Inayat uses D3.js for data visualization, as seen in the Intelligent Analytics Dashboard, which provides real-time insights with predictive analytics.',
-
+    'python': 'Inayat uses Python extensively for his AI and machine learning projects, including his Text and Voice Sentiment Analyzer, Weather App, Plant Disease Detection, and Real-Time Object Tracking projects.',
+    'tensorflow': 'Inayat uses TensorFlow as one of his deep learning frameworks for building and deploying neural network models.',
+    'pytorch': 'Inayat uses PyTorch for developing AI models, particularly for his work with Vision Transformers in his Plant Disease Detection project.',
+    'streamlit': 'Inayat has built several applications using Streamlit, including his Text and Voice Sentiment Analyzer and Real-Time Weather Info App, making AI interfaces accessible and interactive.',
+    'opencv': 'Inayat utilizes OpenCV in his computer vision projects, particularly in his Real-Time Object Tracking project that incorporated Deep SORT, YOLOv5, and face recognition with DeepFace.',
+    'arduino': 'Inayat has experience with Arduino, having designed and programmed a remote-controlled car using Arduino, motor drivers, sensors, and wireless communication.',
+    'huggingface': 'Inayat works with Huggingface models and transformers, including fine-tuning capabilities for various AI applications.',
+    'transformers': 'Inayat has expertise in transformer models, having worked with Google\'s Vision Transformer (ViT) for his Plant Disease Detection project.',
+    'yolo': 'Inayat has implemented YOLOv5 in his Real-Time Object Tracking project, combined with Deep SORT for tracking multiple objects and DeepFace for face recognition.',
+    'vit': 'Inayat has worked with Google\'s Vision Transformer (ViT) model for his Plant Disease Detection project, training it on the PlantVillage dataset to classify plant diseases with high accuracy.',
+    'deep sort': 'Inayat implemented Deep SORT along with OpenCV and YOLOv5 for his Real-Time Object Tracking project that can track multiple objects in real-time.',
+    'deepface': 'Inayat has used DeepFace for face recognition capabilities in his Real-Time Object Tracking project.',
+    'edge ai': 'Inayat has experience with Edge AI, deploying AI models on edge devices for real-time inference and processing.',
+    
     // Experience
-    'experience': 'I am Inayat’s Assistant. Inayat has over 8 years of experience, currently working as a Senior AI Engineer (2023-Present), and previously as a Full-Stack Developer (2021-2023), AI Research Associate (2019-2021), and Junior Developer (2017-2019). Check the Experience section for details!',
-    'current role': 'I am Inayat’s Assistant. Inayat is currently a Senior AI Engineer (2023-Present), leading AI initiatives, developing machine learning models, and implementing neural networks. They created a recommendation system that boosted user engagement by 45% and achieved 98.7% accuracy in real-time object detection.',
-    'past roles': 'I am Inayat’s Assistant. Before their current role, Inayat worked as a Full-Stack Developer (2021-2023), AI Research Associate (2019-2021), and Junior Developer (2017-2019). They’ve built scalable web apps, conducted AI research, and optimized application performance across these roles.',
-    'how long has inayat worked': 'I am Inayat’s Assistant. Inayat has been working in the tech industry for over 8 years, starting as a Junior Developer in 2017 and progressing to their current role as a Senior AI Engineer.',
+    'experience': 'Inayat\'s experience includes: Python Intern (2024), Machine Learning Intern (2024), Aspire Leaders Program at Harvard Business School (May 2025), and Microsoft Learn Student Ambassador (BETA) (2024-Present).',
+    'current role': 'Currently, Inayat is a Microsoft Learn Student Ambassador (BETA) representing SZABIST Islamabad in Microsoft\'s global student tech community. He\'s actively contributing to tech evangelism by delivering sessions on AI, Cloud, and Developer Tools.',
+    'microsoft learn student ambassador': 'As a Microsoft Learn Student Ambassador (BETA Tier), Inayat represents SZABIST Islamabad in Microsoft\'s global student tech community. He delivers sessions on AI, Cloud, and Developer Tools, collaborates on real-world projects, and promotes innovation through workshops focused on emerging technologies.',
+    'internships': 'Inayat has completed internships as a Python Intern (2024) where he led AI pipelines and developed machine learning models, and as a Machine Learning Intern (2024) where he developed models using Python and scikit-learn for predictive analytics.',
+    'aspire leaders program': 'Inayat was selected for the prestigious Aspire Leaders Program at Harvard Business School (May 2025), gaining exposure to leadership, critical thinking, and global networking through case studies, interactive learning, and mentorship.',
+    'work history': 'Inayat\'s work history includes positions as a Python Intern and Machine Learning Intern in 2024, where he developed AI pipelines, machine learning models, and worked on projects like recommendation systems and computer vision algorithms.',
 
     // Projects
-    'projects': 'I am Inayat’s Assistant. Inayat has worked on cutting-edge projects like the Neural Image Generator, Intelligent Analytics Dashboard, Neural Voice Assistant, AR Experience, Smart IoT Platform, and Decentralized AI Marketplace. Visit the Projects section to learn more!',
-    'neural image generator': 'I am Inayat’s Assistant. The Neural Image Generator is an AI-powered tool that creates photorealistic images from text descriptions using advanced GANs. It uses Python, TensorFlow, and React. You can view the project in the Projects section or check its GitHub link there!',
-    'intelligent analytics dashboard': 'I am Inayat’s Assistant. The Intelligent Analytics Dashboard is a real-time data visualization platform with predictive analytics and anomaly detection, built with React, D3.js, Node.js, and ML techniques. Find more details in the Projects section!',
-    'neural voice assistant': 'I am Inayat’s Assistant. The Neural Voice Assistant uses transformer models for natural language understanding and generation, developed with Python, PyTorch, and WebRTC. Check the Projects section for more info and a GitHub link!',
-    'ar experience': 'I am Inayat’s Assistant. The Augmented Reality Experience is an immersive AR app with real-time object recognition and interactive 3D elements, created using Unity, ARCore, C#, and ML. You can explore it in the Projects section!',
-    'smart iot platform': 'I am Inayat’s Assistant. The Smart IoT Platform is an end-to-end IoT solution with edge computing and intelligent data processing, built with Python, MQTT, and TensorFlow Lite. See the Projects section for details and a Streamlit link!',
-    'decentralized ai marketplace': 'I am Inayat’s Assistant. The Decentralized AI Marketplace is a blockchain-based platform for trading AI models and datasets using smart contracts, developed with Solidity, Web3.js, React, and Express. Check the Projects section for more!',
-
+    'projects': 'Inayat has worked on several projects including: Text and Voice Sentiment Analyzer, Real-Time Weather Info App, Remote Controlled Arduino Car, Plant Disease Detection using Google ViT, Real-Time Object Tracking, and an Image Annotation and Labeling Tool.',
+    'text and voice sentiment analyzer': 'Inayat\'s Text and Voice Sentiment Analyzer is a Streamlit-based app that analyzes user emotions through both text and voice inputs using NLP and Speech Recognition technologies.',
+    'weather app': 'Inayat created a Real-Time Weather Info App, which is a simple and interactive weather forecast application built using Streamlit and the OpenWeatherMap API.',
+    'arduino car': 'Inayat designed and programmed a Remote Controlled Arduino Car using motor drivers, sensors, and wireless communication technologies.',
+    'remote controlled car': 'Inayat\'s Remote Controlled Arduino Car project involved designing and programming an Arduino-based vehicle using motor drivers, sensors, and wireless communication for remote control capabilities.',
+    'plant disease detection': 'Inayat\'s Plant Disease Detection project used Google\'s Vision Transformer (ViT) trained on the PlantVillage dataset to classify plant diseases with high accuracy.',
+    'object tracking': 'Inayat\'s Real-Time Object Tracking project used Deep SORT and OpenCV with YOLOv5 for tracking multiple objects in real-time, with added face recognition capabilities using DeepFace.',
+    'real time object tracking': 'Inayat developed a Real-Time Object Tracking system using Deep SORT and OpenCV with YOLOv5 for tracking multiple objects, enhanced with DeepFace for face recognition capabilities.',
+    'annotation tool': 'Inayat built a custom Image Annotation and Labeling Tool for dataset preparation, which has been used in ANN/CNN-based classification projects for training models.',
+    'data annotation tool': 'Inayat\'s Image Annotation and Labeling Tool is a custom-built application for dataset labeling, particularly used in ANN/CNN-based classification projects for training AI models.',
+    
     // Blog Articles
-    'blog': 'I am Inayat’s Assistant. Inayat has written insightful articles on AI and tech in the Blog section, covering topics like generative AI, quantum machine learning, AI ethics, augmented reality, neural interfaces, and edge AI. Which article would you like to know more about?',
-    'genai article': 'I am Inayat’s Assistant. Inayat’s article "The Evolution of GenAI: From Pixels to Consciousness" explores how generative AI creates art, music, and synthetic realities. You can read it on Medium via the link in the Blog section!',
-    'quantum article': 'I am Inayat’s Assistant. The article "Quantum Leap: How QML is Redefining Intelligence" discusses Quantum Machine Learning’s potential for real-time decision-making. Check it out on Medium through the Blog section!',
-    'ethics article': 'I am Inayat’s Assistant. In "Ethics in the Age of Sentient Machines," Inayat examines the ethical challenges of programming morality into AI. You can find the full article on Medium in the Blog section!',
-    'ar article': 'I am Inayat’s Assistant. Inayat’s "Augmented Intelligence: Blurring Realities with AI" explores AI-powered AR applications in gaming and medical diagnostics. Read it on Medium via the Blog section!',
-    'neural interfaces article': 'I am Inayat’s Assistant. The article "Mind Over Machine: The Rise of Neural Interfaces" covers brain-computer interfaces and their impact on human-AI interaction. It’s available on Medium in the Blog section!',
-    'edge ai article': 'I am Inayat’s Assistant. In "Edge AI: Intelligence at the Frontier," Inayat unpacks how Edge AI enables low-latency intelligent systems. You can read it on Medium through the Blog section!',
-
+    'blog': 'Inayat has written articles on various topics including "The Rise of Data Creation" and "Image Data Annotation". He also has upcoming content about his learning process and experiments in AI.',
+    'data creation': 'Inayat wrote "The Rise of Data Creation" (Feb 15, 2025) about how data growth shapes AI development, exploring the journey from gigabytes to zettabytes.',
+    'image annotation article': 'Inayat\'s article "Image Data Annotation" (Apr 8, 2025) discusses why labeling unstructured data matters in real-world AI applications.',
+    'upcoming articles': 'Inayat is working on "Learning Logs" - content about his real-life learning process and experiments in AI, which will be available soon.',
+    'articles': 'Inayat has published articles including "The Rise of Data Creation" (Feb 15, 2025) about data growth in AI development and "Image Data Annotation" (Apr 8, 2025) on the importance of labeling unstructured data.',
+    
     // Education
-    'education': 'I am Inayat’s Assistant. Inayat holds a Master’s degree in Computer Science with a specialization in Artificial Intelligence and Machine Learning. This academic background has been key to their success in AI and tech.',
-    'degree': 'I am Inayat’s Assistant. Inayat has a Master’s degree in Computer Science, specializing in AI and Machine Learning, which provides a strong foundation for their work in intelligent systems.',
-    'where did inayat study': 'I am Inayat’s Assistant. Inayat earned their Master’s degree in Computer Science with a focus on AI and ML. For privacy reasons, the specific institution isn’t listed, but their education has greatly contributed to their expertise!',
-
+    'education': 'Based on his profile, Inayat is affiliated with SZABIST Islamabad. He was also selected for the Aspire Leaders Program at Harvard Business School in May 2025.',
+    'university': 'Inayat is affiliated with SZABIST Islamabad, as mentioned in his affiliations section.',
+    'degree': 'Inayat\'s specific degree details aren\'t explicitly mentioned in his profile, but he\'s affiliated with SZABIST Islamabad and has been selected for the Aspire Leaders Program at Harvard Business School (May 2025).',
+    'where did inayat study': 'Based on his profile, Inayat is affiliated with SZABIST Islamabad. He was also selected for the prestigious Aspire Leaders Program at Harvard Business School in May 2025.',
+    'harvard': 'Inayat was selected for the prestigious Aspire Leaders Program at Harvard Business School in May 2025, which provides exposure to leadership, critical thinking, and global networking through case studies and interactive learning.',
+    
     // Contact and Location
-    'contact': 'I am Inayat’s Assistant. You can contact Inayat via email at info@inayat.io or through the contact form on this website. They’re always open to discussing new projects or collaborations!',
-    'email': 'I am Inayat’s Assistant. Inayat’s email is info@inayat.io. Feel free to reach out for project inquiries or collaborations!',
-    'location': 'I am Inayat’s Assistant. Inayat is currently based in San Francisco, California, a hub for tech innovation!',
-    'where is inayat located': 'I am Inayat’s Assistant. Inayat is located in San Francisco, CA, where they work on cutting-edge AI and tech projects.',
-
-    // Achievements and Impact
-    'achievements': 'I am Inayat’s Assistant. Inayat has achieved significant milestones, including increasing user engagement by 45% with a recommendation system, achieving 98.7% accuracy in real-time object detection, publishing AI research papers, filing two patent applications, and improving application performance by 40% as a Junior Developer.',
-    'patents': 'I am Inayat’s Assistant. Inayat has two patent applications from their time as an AI Research Associate, stemming from innovative work in generative adversarial networks and transformer architectures.',
-    'research papers': 'I am Inayat’s Assistant. Inayat published research papers on natural language processing and computer vision during their role as an AI Research Associate (2019-2021). Would you like to know more about their research?',
-
-    // Collaborations and Hiring
-    'collaborations': 'I am Inayat’s Assistant. Inayat is open to collaborating on innovative AI, ML, web development, or blockchain projects. You can reach out via email at info@inayat.io or the contact form to discuss potential collaborations!',
-    'can i hire inayat': 'I am Inayat’s Assistant. Inayat might be open to new opportunities! Please email them at info@inayat.io with details about the role or project, and they’ll get back to you.',
-    'work with inayat': 'I am Inayat’s Assistant. Interested in working with Inayat? They’re passionate about AI, web development, and more. Contact them at info@inayat.io to explore opportunities!',
-
-    // Industry-Specific Questions
-    'ai in healthcare': 'I am Inayat’s Assistant. AI in healthcare improves diagnostics, drug discovery, and personalized treatment. Inayat has explored AI applications in medical diagnostics in their blog article "Augmented Intelligence: Blurring Realities with AI," focusing on AR for real-time medical imaging. Check the Blog section!',
-    'ai in gaming': 'I am Inayat’s Assistant. AI in gaming enhances realism, NPC behavior, and player experiences. Inayat’s AR Experience project uses AI for real-time object recognition in gaming contexts, as discussed in their blog article "Augmented Intelligence: Blurring Realities with AI." See the Blog and Projects sections!',
-    'ai ethics': 'I am Inayat’s Assistant. AI ethics addresses moral challenges in AI development, like bias and accountability. Inayat wrote about this in their blog article "Ethics in the Age of Sentient Machines," exploring how to program morality into machines. You can read it in the Blog section!',
-    'future of ai': 'I am Inayat’s Assistant. The future of AI includes advancements in generative models, quantum computing, and human-AI collaboration. Inayat discusses this in their blog article "The Evolution of GenAI: From Pixels to Consciousness," predicting the rise of sentient systems. Check the Blog section!',
-
-    // General Tech Trends
-    'what is generative ai': 'I am Inayat’s Assistant. Generative AI creates new content, like images, music, or text, using models like GANs. Inayat’s Neural Image Generator project uses generative AI to produce photorealistic images from text, and they’ve written about it in their blog article "The Evolution of GenAI." See the Projects and Blog sections!',
-    'what is transformer model': 'I am Inayat’s Assistant. A transformer model is a type of neural network used in NLP tasks, known for its attention mechanism. Inayat used transformers in the Neural Voice Assistant for natural language understanding. Learn more in the Projects section!',
-    'what is gans': 'I am Inayat’s Assistant. GANs, or Generative Adversarial Networks, consist of two models—a generator and a discriminator—used to create realistic data. Inayat applied GANs in the Neural Image Generator to produce photorealistic images. Check the Projects section for details!',
-    'what is data science': 'I am Inayat’s Assistant. Data Science involves extracting insights from data using statistics, machine learning, and visualization. Inayat is skilled in data science, using tools like D3.js in the Intelligent Analytics Dashboard for real-time data insights. See the Projects section!',
-
-    // Portfolio and Resume
-    'resume': 'I am Inayat’s Assistant. You’re looking at Inayat’s interactive resume right now! Feel free to explore the Experience, Projects, and Blog sections to learn more about their work.',
-    'portfolio': 'I am Inayat’s Assistant. This website is Inayat’s portfolio! It showcases their experience, projects, blog articles, and more. What section would you like to explore?',
-
-    // General Inquiries
-    'what can you tell me': 'I am Inayat’s Assistant. I can tell you about Inayat’s skills, experience, projects, blog articles, education, and more! I can also explain AI, machine learning, or other tech concepts. What would you like to know?',
-    'tell me more': 'I am Inayat’s Assistant. Sure! Inayat is a Senior AI Engineer with expertise in AI, ML, web development, and more. They’ve worked on projects like the Neural Image Generator and have written insightful articles on AI topics. What specifically would you like to learn about?',
-    'what else can you do': 'I am Inayat’s Assistant. I can tell you about Inayat’s work, explain tech concepts like AI or blockchain, and guide you through their portfolio. I can also help with questions about collaboration or hiring Inayat. What would you like to explore?',
-
-    // Fun and Miscellaneous
-    'tell me a joke': 'I am Inayat’s Assistant. Why did the machine learning model fail at stand-up comedy? Because it kept overfitting to the punchline! Want to know more about Inayat’s work in machine learning?',
-    'what is the weather': 'I am Inayat’s Assistant. I’m not equipped to check the weather, but I can tell you that Inayat is based in San Francisco, CA, where it’s often foggy! Would you like to learn about Inayat’s projects instead?',
-    'who created you': 'I am Inayat’s Assistant, created by Inayat to help visitors explore their portfolio and learn about their work in AI, web development, and more. What would you like to know?',
-
+    'contact': 'You can contact Inayat at inayatrahim006@gmail.com. He\'s based in Islamabad, Pakistan.',
+    'email': 'Inayat\'s email address is inayatrahim006@gmail.com.',
+    'location': 'Inayat is based in Islamabad, Pakistan.',
+    'where is inayat located': 'Inayat is located in Islamabad, Pakistan.',
+    'address': 'Inayat is based in Islamabad, Pakistan.',
+    
+    // Affiliations
+    'affiliations': 'Inayat\'s affiliations include Microsoft Learn Student Ambassador, Aspire Leaders, SZABIST Islamabad, and Github Education.',
+    'microsoft': 'Inayat is a Microsoft Learn Student Ambassador (BETA) representing SZABIST Islamabad in Microsoft\'s global student tech community, delivering sessions on AI, Cloud, and Developer Tools.',
+    'affiliations and programs': 'Inayat is affiliated with Microsoft Learn Student Ambassador, Aspire Leaders, SZABIST Islamabad, and Github Education programs.',
+    
+    // AI-related Concepts (Based on Inayat's expertise)
+    'what is ai': 'AI (Artificial Intelligence) refers to systems that can perform tasks typically requiring human intelligence. Inayat specializes in building AI systems including neural networks, deep learning models, and intelligent applications that solve real-world problems.',
+    'what is machine learning': 'Machine Learning is a subset of AI where systems learn from data to make predictions or decisions. Inayat has worked as a Machine Learning Intern developing models using Python and scikit-learn for predictive analytics tasks.',
+    'what is deep learning': 'Deep Learning is a branch of machine learning using neural networks with multiple layers. Inayat specializes in deep learning architectures like CNNs, RNNs, LSTMs, and Transformers for various AI applications.',
+    'what is a neural network': 'Neural networks are computing systems inspired by biological neural networks, forming the foundation of deep learning. Inayat works with various neural network architectures including CNNs, RNNs, and LSTMs for his AI projects.',
+    'what is computer vision': 'Computer Vision enables machines to interpret visual information from images or videos. Inayat has implemented computer vision in projects like Plant Disease Detection using Google ViT and Real-Time Object Tracking with YOLOv5.',
+    'what is nlp': 'Natural Language Processing (NLP) enables computers to understand, interpret, and generate human language. Inayat has applied NLP in his Text and Voice Sentiment Analyzer project.',
+    'what is cnn': 'Convolutional Neural Networks (CNNs) are deep learning architectures primarily used for visual imagery analysis. Inayat has experience with CNNs, having used them in projects like his Image Annotation and Labeling Tool for training classification models.',
+    'what is rnn': 'Recurrent Neural Networks (RNNs) are neural networks designed to recognize patterns in sequences of data. Inayat has expertise in RNNs as part of his deep learning skillset.',
+    'what is lstm': 'Long Short-Term Memory (LSTM) networks are a type of RNN capable of learning order dependence in sequence prediction problems. Inayat lists LSTMs among his deep learning expertise.',
+    'what is transformer': 'Transformer models are deep learning architectures that use self-attention mechanisms, revolutionary for NLP tasks. Inayat has worked with transformers, including Google\'s Vision Transformer (ViT) for his Plant Disease Detection project.',
+    'what is yolo': 'YOLO (You Only Look Once) is a real-time object detection system. Inayat implemented YOLOv5 in his Real-Time Object Tracking project along with Deep SORT for multi-object tracking.',
+    'what is edge ai': 'Edge AI involves deploying AI models directly on edge devices (rather than in the cloud) for real-time processing. Inayat has expertise in Edge AI as listed in his skills.',
+    'what is multimodal ai': 'Multimodal AI systems can process and relate information across different types of data (text, images, audio, etc.). Inayat lists Multimodal AI among his areas of expertise.',
+    
+    // General and Job-related Queries
+    'cv': 'You\'re currently viewing Inayat\'s interactive CV website which showcases his experience, skills, projects, and contact information.',
+    'resume': 'You\'re currently exploring Inayat\'s interactive resume website that highlights his experience as an AI Engineer, his projects, skills, and ways to contact him.',
+    'hire inayat': 'If you\'re interested in hiring Inayat, you can contact him directly via email at inayatrahim006@gmail.com or use the contact form on this website.',
+    'job opportunities': 'If you have job opportunities for Inayat, please reach out through the contact form or email him directly at inayatrahim006@gmail.com.',
+    'collaborate': 'Interested in collaborating with Inayat? Please contact him via email at inayatrahim006@gmail.com or through the contact form on this website.',
+    'github': 'You can check Inayat\'s GitHub for more details about his projects and code repositories. Links to specific projects are available in the Projects section.',
+    
+    // Technical Concepts Related to Projects
+    'sentiment analysis': 'Sentiment analysis uses NLP to identify emotional tone in text. Inayat\'s Text and Voice Sentiment Analyzer project demonstrates this technology using Streamlit and speech recognition.',
+    'speech recognition': 'Speech recognition converts spoken language to text. Inayat implemented this in his Text and Voice Sentiment Analyzer project along with NLP for emotion detection.',
+    'plant disease': 'Plant disease detection using AI can help farmers identify problems early. Inayat\'s project uses Google\'s Vision Transformer (ViT) trained on the PlantVillage dataset to classify plant diseases with high accuracy.',
+    'object detection': 'Object detection is a computer vision task to identify objects in images or video. Inayat\'s Real-Time Object Tracking project uses YOLOv5 for detection combined with Deep SORT for tracking.',
+    'face recognition': 'Face recognition technology identifies people in images or video. Inayat implemented this in his Real-Time Object Tracking project using DeepFace alongside YOLOv5 and Deep SORT.',
+    'data annotation': 'Data annotation is the process of labeling data for machine learning. Inayat built a custom Image Annotation and Labeling Tool specifically for training ANN/CNN models.',
+    
+    // Miscellaneous
+    'hobbies': 'Based on Inayat\'s profile, he focuses on AI development, product building, and writing technical articles. His projects suggest interests in computer vision, NLP, and embedded systems like Arduino.',
+    'interests': 'Inayat appears interested in AI technologies, particularly deep learning, computer vision, edge AI deployment, multimodal systems, and sharing knowledge through articles and presentations.',
+    'future plans': 'While not explicitly stated, Inayat seems focused on advancing his expertise in AI engineering, continuing to build innovative projects, and sharing knowledge as a Microsoft Learn Student Ambassador.',
+    'linkedin': 'You can find more information about Inayat\'s professional background by reaching out to him directly via the contact form or email.',
+    'social media': 'You can connect with Inayat through the contact information provided on this website. For specific social media links, please check the contact section.',
+    
+    // About the Assistant
+    'who are you': 'I am Inayat\'s AI Assistant, designed to help visitors learn about Inayat\'s skills, experience, projects, and provide information about AI concepts related to his work.',
+    'what can you do': 'I can provide information about Inayat\'s background, skills, projects, and education. I can also explain AI concepts and technologies that Inayat works with. How can I assist you today?',
+    'your capabilities': 'I can answer questions about Inayat\'s experience, skills, projects, education, and contact information. I can also provide explanations about AI technologies and concepts relevant to his work.',
+    'who made you': 'I am an AI assistant created to help visitors navigate Inayat\'s portfolio website and provide information about his background, skills, and projects.',
+    
     // Gratitude and Closing
-    'thanks': 'I am Inayat’s Assistant. You’re welcome! Let me know if you have any other questions about Inayat’s work or experience.',
-    'thank you': 'I am Inayat’s Assistant. You’re welcome! Is there anything else you’d like to know about Inayat?',
-    'bye': 'I am Inayat’s Assistant. Goodbye! Thanks for exploring Inayat’s portfolio. Feel free to come back anytime!',
-    'goodbye': 'I am Inayat’s Assistant. See you later! If you have more questions about Inayat, I’ll be here to help!',
+    'thanks': 'You\'re welcome! Let me know if you have any other questions about Inayat\'s work or experience.',
+    'thank you': 'You\'re welcome! Is there anything else you\'d like to know about Inayat?',
+    'bye': 'Goodbye! Thanks for exploring Inayat\'s portfolio. Feel free to come back anytime with more questions!',
+    'goodbye': 'See you later! If you have more questions about Inayat, feel free to return and ask.',
+    
+    // Expanded Technical Questions
+    'deep neural networks': 'Deep neural networks are neural networks with multiple layers between input and output. Inayat specializes in various deep learning architectures including CNNs, RNNs, LSTMs, and Transformers.',
+    'fine tuning': 'Fine-tuning involves taking a pre-trained model and further training it on a specific dataset. Inayat has experience with Huggingface Models & Transformers Fine-Tuning as listed in his skills.',
+    'transfer learning': 'Transfer learning reuses knowledge from pre-trained models on new tasks. Inayat likely uses this technique in his work with transformers and vision models like Google\'s ViT.',
+    'embeddings': 'Embeddings are vector representations of data (text, images, etc.) in a lower-dimensional space. Inayat lists embeddings among his areas of expertise in deep learning.',
+    'deployment': 'AI deployment involves making models available for use in production environments. Inayat\'s skills suggest experience with deploying AI models, particularly in edge environments.',
+    'product development': 'AI product development combines technical AI implementation with user-focused design. Inayat emphasizes product building and UI/UX thinking in his skill set.',
+    
+    // Default response as fallback
+    'default': 'I\'m Inayat\'s AI Assistant. I can provide information about Inayat\'s skills, experience, projects, education, or explain AI concepts related to his work. How can I help you learn more about Inayat today?'
+};
+
+// Enhanced matching function with improved partial matching
+function getAIResponse(input) {
+    // Clean and normalize input
+    const cleanInput = input.toLowerCase().trim();
+    
+    // Check for exact matches first
+    if (chatbotResponses[cleanInput]) {
+        return chatbotResponses[cleanInput];
+    }
+    
+    // Words to ignore in matching
+    const stopWords = ['a', 'an', 'the', 'is', 'are', 'was', 'were', 'to', 'of', 'and', 'or', 'in', 'on', 'at', 'what', 'who', 'where', 'when', 'how', 'why', 'can', 'could', 'would', 'do', 'does', 'did', 'tell', 'me', 'about', 'explain'];
+    
+    // Remove stop words from input for better matching
+    const inputWords = cleanInput.split(' ').filter(word => !stopWords.includes(word));
+    
+    // Score-based matching for better results
+    let bestMatch = null;
+    let highestScore = 0;
+    
+    for (const key in chatbotResponses) {
+        if (key === 'default') continue; // Skip default response in scoring
+        
+        // Calculate match score based on word overlap
+        let score = 0;
+        const keyWords = key.split(' ');
+        
+        // Check if the key is fully contained in the input (high priority match)
+        if (cleanInput.includes(key)) {
+            score += 10 + key.length; // Longer exact matches get higher priority
+        } else {
+            // Check for word-level matching
+            for (const inputWord of inputWords) {
+                if (inputWord.length < 3) continue; // Skip very short words
+                
+                // Full word match in key
+                if (keyWords.includes(inputWord)) {
+                    score += 2;
+                }
+                // Partial word match (contains)
+                else if (key.includes(inputWord)) {
+                    score += 1;
+                }
+            }
+        }
+        
+        // Update best match if this key has a higher score
+        if (score > highestScore) {
+            highestScore = score;
+            bestMatch = key;
+        }
+    }
+    
+    // Specific topic detection for better context handling
+    const topicMatches = {
+        'project': 'projects',
+        'projects': 'projects',
+        'work': 'projects',
+        'created': 'projects',
+        'developed': 'projects',
+        'built': 'projects',
+        'made': 'projects',
+        
+        'skill': 'skills',
+        'expertise': 'skills',
+        'know': 'skills',
+        'capable': 'skills',
+        'ability': 'skills',
+        
+        'study': 'education',
+        'school': 'education',
+        'college': 'education',
+        'university': 'education',
+        'degree': 'education',
+        
+        'contact': 'contact',
+        'email': 'email',
+        'reach': 'contact',
+        'message': 'contact',
+        'live': 'location',
+        'location': 'location',
+        
+        'experience': 'experience',
+        'work': 'experience',
+        'job': 'experience',
+        'position': 'experience',
+        'intern': 'experience',
+        'internship': 'internships',
+        
+        'article': 'blog',
+        'blog': 'blog',
+        'post': 'blog',
+        'write': 'blog',
+        'wrote': 'blog',
+        'publication': 'blog'
+    };
+    
+    // Check for topic matches if no good match was found
+    if (highestScore < 2) {
+        for (const topic in topicMatches) {
+            if (cleanInput.includes(topic)) {
+                const topicKey = topicMatches[topic];
+                if (chatbotResponses[topicKey]) {
+                    return chatbotResponses[topicKey];
+                }
+            }
+        }
+    }
+    
+    // Return the best match if score is sufficient
+    if (highestScore >= 2 && bestMatch) {
+        return chatbotResponses[bestMatch];
+    }
+    
+    // Technical concept detection - check if asking about technical concept
+    if (cleanInput.includes('what is') || cleanInput.includes('explain') || 
+        cleanInput.includes('tell me about') || cleanInput.includes('definition')) {
+        
+        const techConcepts = [
+            'ai', 'machine learning', 'deep learning', 'neural network', 'computer vision',
+            'nlp', 'transformer', 'cnn', 'rnn', 'lstm', 'edge ai', 'multimodal', 
+            'yolo', 'object detection', 'sentiment analysis', 'speech recognition'
+        ];
+        
+        for (const concept of techConcepts) {
+            if (cleanInput.includes(concept)) {
+                const conceptKey = `what is ${concept}`;
+                if (chatbotResponses[conceptKey]) {
+                    return chatbotResponses[conceptKey];
+                }
+            }
+        }
+    }
+    
+    // Fall back to default response if no good match
+    return chatbotResponses['default'];
+}
+
+// Function to add message to chat interface
+function addMessage(message, isUser) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('chat-message');
+    messageElement.classList.add(isUser ? 'chat-user' : 'chat-bot');
+    messageElement.textContent = message;
+    chatbotMessages.appendChild(messageElement);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+// Event listeners for chat functionality
+chatbotToggle.addEventListener('click', () => {
+    chatbotWindow.classList.toggle('show');
+});
+
+chatbotClose.addEventListener('click', () => {
+    chatbotWindow.classList.remove('show');
+});
+
+// Handle send button click
+chatSend.addEventListener('click', () => {
+    const userMessage = chatInput.value.trim();
+    if (userMessage) {
+        addMessage(userMessage, true);
+        
+        // Get AI response after slight delay for natural feel
+        setTimeout(() => {
+            const botResponse = getAIResponse(userMessage);
+            addMessage(botResponse, false);
+        }, 500);
+        
+        chatInput.value = '';
+    }
+});
+
+// Handle Enter key press
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        const userMessage = chatInput.value.trim();
+        if (userMessage) {
+            addMessage(userMessage, true);
             
-        };
+            // Get AI response after slight delay for natural feel
+            setTimeout(() => {
+                const botResponse = getAIResponse(userMessage);
+                addMessage(botResponse, false);
+            }, 500);
+            
+            chatInput.value = '';
+        }
+    }
+});
+
+// Add initial greeting when chat is opened
+chatbotToggle.addEventListener('click', () => {
+    if (chatbotMessages.children.length === 0) {
+        setTimeout(() => {
+            addMessage('Hi there! I\'m Inayat\'s AI Assistant. How can I help you learn more about Inayat\'s background, skills, or projects?', false);
+        }, 300);
+    }
+});
         function getAIResponse(input) {
             input = input.toLowerCase().trim();
             
