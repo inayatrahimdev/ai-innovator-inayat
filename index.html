@@ -635,6 +635,56 @@
 .neon-link:hover {
     color: var(--accent);
 }
+        /* Affiliations Section Styling */
+.affiliations-section {
+  padding: 40px 0;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.affiliations-section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* Logo Carousel Styling */
+.logo-carousel {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.logo-track {
+  display: flex;
+  width: calc(250px * 10); /* Adjust based on number of logos */
+  animation: scroll 20s linear infinite;
+}
+
+.logo-track img {
+  width: 200px;
+  height: auto;
+  margin: 0 25px;
+  object-fit: contain;
+}
+
+/* Scroll Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .logo-track img {
+    width: 150px;
+    margin: 0 15px;
+  }
+}
+
 
         /* Contact Section */
         .contact-grid {
@@ -1337,6 +1387,28 @@
         </div>
     </div>
 </section>
+
+    <!-- Affiliation Logos Carousel -->
+<section id="affiliations" class="affiliations-section">
+  <h2>Affiliations & Programs</h2>
+  <div class="logo-carousel">
+    <div class="logo-track">
+      <!-- Logo Images -->
+      <img src="https://learn.microsoft.com/favicon.ico" alt="Microsoft Learn Student Ambassadors" />
+      <img src="https://aspireleaders.org/wp-content/uploads/2022/09/Aspire-Leaders-Logo-Blue-Transparent.png" alt="Aspire Leaders Program" />
+      <img src="https://szabist-isb.edu.pk/wp-content/uploads/2021/01/SZABIST_LOGO-1.png" alt="SZABIST Islamabad" />
+      <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" />
+      <img src="https://education.github.com/pack/logo.svg" alt="GitHub Education" />
+      <!-- Duplicate logos for seamless scrolling -->
+      <img src="https://learn.microsoft.com/favicon.ico" alt="Microsoft Learn Student Ambassadors" />
+      <img src="https://aspireleaders.org/wp-content/uploads/2022/09/Aspire-Leaders-Logo-Blue-Transparent.png" alt="Aspire Leaders Program" />
+      <img src="https://szabist-isb.edu.pk/wp-content/uploads/2021/01/SZABIST_LOGO-1.png" alt="SZABIST Islamabad" />
+      <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" />
+      <img src="https://education.github.com/pack/logo.svg" alt="GitHub Education" />
+    </div>
+  </div>
+</section>
+
 
     <!-- Contact Section -->
     <section id="contact">
