@@ -637,52 +637,52 @@
 }
         /* Affiliations Section Styling */
 .affiliations-section {
-  padding: 40px 0;
-  background-color: #f9f9f9;
+  background: #f4f4f4; /* light background to stand out */
+  padding: 60px 20px;
   text-align: center;
 }
 
-.affiliations-section h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #111; /* use black for visibility on light bg */
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Logo Carousel Styling */
-.logo-carousel {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
-
-.logo-track {
+.affiliations-container {
   display: flex;
-  width: calc(250px * 10); /* Adjust based on number of logos */
-  animation: scroll 20s linear infinite;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
 }
 
-.logo-track img {
-  width: 200px;
-  height: auto;
-  margin: 0 25px;
+.affiliation-card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  width: 140px;
+  transition: transform 0.3s ease;
+}
+
+.affiliation-card:hover {
+  transform: scale(1.05);
+}
+
+.affiliation-card img {
+  width: 64px;
+  height: 64px;
   object-fit: contain;
+  margin-bottom: 12px;
 }
 
-/* Scroll Animation */
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .logo-track img {
-    width: 150px;
-    margin: 0 15px;
-  }
+.affiliation-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #222;
+  font-weight: 500;
 }
 
 
