@@ -1629,6 +1629,16 @@
 
     <!-- JavaScript -->
     <script>
+        <script>
+  const logoTrack = document.querySelector('.logo-track');
+  logoTrack.addEventListener('mouseenter', () => {
+    logoTrack.style.animationPlayState = 'paused';
+  });
+  logoTrack.addEventListener('mouseleave', () => {
+    logoTrack.style.animationPlayState = 'running';
+  });
+</script>
+
         // EmailJS Integration
 emailjs.init("FMM0RninXMd8IDNas");
 
