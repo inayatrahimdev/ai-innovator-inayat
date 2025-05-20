@@ -1339,23 +1339,42 @@
 </section>
     <section class="affiliations-programs-section">
     <h2 class="section-title">Affiliations & Programs</h2>
-    <div class="logo-runner">
-        <div class="affiliations-container">
-            <div class="affiliation-card glass-card">
-                <img src="mlsa.jpeg" alt="Microsoft Learn Student Ambassador" class="running-logo">
-                <p>Microsoft Learn Student Ambassador</p>
-            </div>
-            <div class="affiliation-card glass-card">
-                <img src="Aspire.jpg" alt="Aspire Leaders" class="running-logo">
-                <p>Aspire Leaders</p>
-            </div>
-            <div class="affiliation-card glass-card">
-                <img src="szabist logo.jpg" alt="SZABIST Islamabad" class="running-logo">
-                <p>SZABIST Islamabad</p>
-            </div>
-            <div class="affiliation-card glass-card">
-                <img src="githubedu.jpeg" alt="Github Education" class="running-logo">
-                <p>Github Education</p>
+    <div class="logo-runner-container">
+        <div class="logo-runner">
+            <div class="affiliations-container">
+                <div class="affiliation-card glass-card">
+                    <img src="mlsa.jpeg" alt="Microsoft Learn Student Ambassador" class="running-logo">
+                    <p>Microsoft Learn Student Ambassador</p>
+                </div>
+                <div class="affiliation-card glass-card">
+                    <img src="Aspire.jpg" alt="Aspire Leaders" class="running-logo">
+                    <p>Aspire Leaders</p>
+                </div>
+                <div class="affiliation-card glass-card">
+                    <img src="szabist logo.jpg" alt="SZABIST Islamabad" class="running-logo">
+                    <p>SZABIST Islamabad</p>
+                </div>
+                <div class="affiliation-card glass-card">
+                    <img src="githubedu.jpeg" alt="Github Education" class="running-logo">
+                    <p>Github Education</p>
+                </div>
+                <!-- Duplicate cards to create seamless animation -->
+                <div class="affiliation-card glass-card">
+                    <img src="mlsa.jpeg" alt="Microsoft Learn Student Ambassador" class="running-logo">
+                    <p>Microsoft Learn Student Ambassador</p>
+                </div>
+                <div class="affiliation-card glass-card">
+                    <img src="Aspire.jpg" alt="Aspire Leaders" class="running-logo">
+                    <p>Aspire Leaders</p>
+                </div>
+                <div class="affiliation-card glass-card">
+                    <img src="szabist logo.jpg" alt="SZABIST Islamabad" class="running-logo">
+                    <p>SZABIST Islamabad</p>
+                </div>
+                <div class="affiliation-card glass-card">
+                    <img src="githubedu.jpeg" alt="Github Education" class="running-logo">
+                    <p>Github Education</p>
+                </div>
             </div>
         </div>
     </div>
@@ -1391,20 +1410,25 @@
             animation: dotGlow 5s infinite ease-in-out;
         }
 
-        .logo-runner {
-            display: flex;
+        .logo-runner-container {
+            position: relative;
+            width: 100%;
+            height: 180px;
             overflow: hidden;
-            white-space: nowrap;
-            animation: logoRun 10s linear infinite;
+            margin: 0 auto;
+            max-width: 1400px; /* Wider container for better visibility */
+        }
+
+        .logo-runner {
+            position: absolute;
+            display: flex;
+            animation: logoSlide 40s linear infinite;
+            padding: 20px 0;
         }
 
         .affiliations-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
             gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         .affiliation-card {
@@ -1432,7 +1456,6 @@
             height: 80px;
             object-fit: contain;
             margin-bottom: 15px;
-            animation: logoSpin 2s infinite ease-in-out;
         }
 
         .affiliation-card p {
@@ -1443,15 +1466,14 @@
             text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
         }
 
-        @keyframes logoRun {
+        @keyframes logoSlide {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
 
-        @keyframes logoSpin {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(180deg); }
-            100% { transform: rotate(360deg); }
+        /* Slow down the animation dramatically */
+        .logo-runner {
+            animation-duration: 40s; /* Very slow animation */
         }
 
         @keyframes dotGlow {
@@ -1482,7 +1504,6 @@
         }
     </style>
 </section>
-
 
     <!-- Contact Section -->
     <section id="contact">
